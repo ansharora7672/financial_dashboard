@@ -40,7 +40,7 @@ export default function LoginPage() {
       <div className="w-full max-w-[360px] flex flex-col items-center gap-6">
 
         {/* title */}
-        <h1 className="font-barlow text-white text-4xl font-normal tracking-widest uppercase mb-2">
+        <h1 className="text-white text-4xl font-normal tracking-widest uppercase mb-2">
           Welcome Back!
         </h1>
 
