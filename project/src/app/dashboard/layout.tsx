@@ -20,8 +20,6 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   const pathname = usePathname()
   const [currentUser, setCurrentUser] = useState<AuthUser | null>(null)
 
-  // on mount, check auth state and redirect if needed.
-  // Also set the user in state for role-based access control and showing user info in the UI.
   useEffect(() => {
     const currentUser = getUser()
 
@@ -31,14 +29,16 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       return
     }
 
-    // set user in state to show the dashboard, and for role-based access control
-    setCurrentUser(currentUser)
-
-    // check the current tab is allowed for this user
+    // check access before setting user in state - if we set user first React
+    // re-renders and briefly shows the page before the redirect fires
     const currentTab = pathname.split('/')[2] as Tab
     if (currentTab && !canAccess(currentUser.allowedTabs, currentTab)) {
       router.replace(`/dashboard/${currentUser.allowedTabs[0]}`)
+      return
     }
+
+    // only set user if they are allowed on this tab - prevents flash
+    setCurrentUser(currentUser)
   }, [pathname, router])
 
   // logout handler - clears user from localStorage and redirects to login

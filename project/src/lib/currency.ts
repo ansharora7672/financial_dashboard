@@ -7,8 +7,10 @@ const rates = ratesData.rates as Record<CurrencyCode, number>
 // all rates are relative to USD (USD BASE), so we go through USD as the middle step
 export function convertCurrency(amount: number, from: CurrencyCode, to: CurrencyCode): number {
   if (from === to) return amount
-  const inUSD = amount * rates[from]
-  return inUSD / rates[to]
+  const fromRate = rates[from]
+  const toRate = rates[to]
+  if (!fromRate || !toRate) return 0
+  return (amount * fromRate) / toRate
 }
 
 // shorthand for converting to USD used in stats when summing across currencies
