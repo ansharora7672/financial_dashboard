@@ -20,6 +20,8 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   const pathname = usePathname()
   const [currentUser, setCurrentUser] = useState<AuthUser | null>(null)
 
+  // on mount, check auth state and redirect if needed.
+  // Also set the user in state for role-based access control and showing user info in the UI.
   useEffect(() => {
     const currentUser = getUser()
 
