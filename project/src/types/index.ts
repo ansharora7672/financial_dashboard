@@ -52,5 +52,5 @@ export interface NormalizedTransaction {
     title: string
     department: string
   } | null                // null if the name in bank data doesn't match any user
-  source: unknown         // original raw object from the bank — used in transaction detail modal
+  source: unknown         // original raw object from the bank - used in transaction detail
 }
