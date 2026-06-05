@@ -51,7 +51,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   if (!currentUser) return null
 
   return (
-    <div className="flex h-screen bg-[#0d0f14] overflow-hidden">
+    <div className="flex h-screen bg-[#0d0f14]">
 
       {/* sidebar */}
       <aside className="w-20 flex flex-col items-center py-6 bg-[#0a0c10] border-r border-white/5">
@@ -98,7 +98,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       </aside>
 
       {/* main area */}
-      <div className="flex flex-col flex-1 overflow-hidden">
+      <div className="flex flex-col flex-1">
 
         {/* top bar */}
         <div className="h-9 flex items-center justify-end px-6 border-b border-white/5 shrink-0">
